@@ -1,55 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 
-namespace my_code
+namespace my_code.Pages
 {
-    internal class Program
+    internal class TMPage
     {
-        static void Main(string[] args)
+        public void CreateTM(IWebDriver driver)
         {
-
-            // open chrome browser
-            IWebDriver driver = new ChromeDriver();
-            driver.Manage().Window.Maximize();
-
-            // launch turnup portal
-            driver.Navigate().GoToUrl("http://horse.industryconnect.io/Account/Login?ReturnUrl=%2f");
-
-            // identify username textbox and enter valid username 
-            IWebElement usernameTextbox = driver.FindElement(By.Id("UserName"));
-            usernameTextbox.SendKeys("hari");
-
-            // identify password textbox and enter valid password
-            IWebElement passwordTextbox = driver.FindElement(By.Id("Password"));
-            passwordTextbox.SendKeys("123123");
-
-            // click on login button
-            IWebElement loginButton = driver.FindElement(By.XPath("//*[@id='loginForm']/form/div[3]/input[1]"));
-            loginButton.Click();
-
-            // check if user is logged in sucessfully
-            IWebElement hellohari = driver.FindElement(By.XPath("//*[@id='logoutForm']/ul/li/a"));
-
-            if (hellohari.Text == "Hello hari!")
-            {
-                Console.WriteLine("Logged in succesfully, test passed.");
-            }
-            else
-            {
-                Console.WriteLine("Login failed, test failed.");
-            }
-
-            // create Time and material record
-
-            // Go to TM page
-            IWebElement administrationDropdown = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/a"));
-            administrationDropdown.Click();
-
-            IWebElement tmOption = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/ul/li[3]/a"));
-            tmOption.Click();
-
             // Click on create new button 
             IWebElement createNewButton = driver.FindElement(By.XPath("//*[@id='container']/p/a"));
             createNewButton.Click();
@@ -57,6 +19,7 @@ namespace my_code
             // Select material from TypeCode dropdown
             IWebElement typeCodeDropdown = driver.FindElement(By.XPath("//*[@id='TimeMaterialEditForm']/div/div[1]/div/span[1]/span/span[2]/span"));
             typeCodeDropdown.Click();
+            Thread.Sleep(1000);
 
             IWebElement materialOption = driver.FindElement(By.XPath("//*[@id='TypeCode_listbox']/li[2]"));
             materialOption.Click();
@@ -100,16 +63,18 @@ namespace my_code
             {
                 Console.WriteLine("Test failed");
             }
+
+
+        }
+
+        public void EditTM(IWebDriver driver)
+        {
+
+        }
+
+        public void DeleteTM(IWebDriver driver)
+        {
+
         }
     }
 }
-        
-            
-        
-    
-
-
-
-
-
-
