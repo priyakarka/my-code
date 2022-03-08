@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using my_code.Utilities;
 using OpenQA.Selenium;
 
 namespace my_code.Pages
@@ -43,7 +44,7 @@ namespace my_code.Pages
             // Click on save button
             IWebElement saveButton = driver.FindElement(By.Id("SaveButton"));
             saveButton.Click();
-            Thread.Sleep(1000);
+            wait.WaitToBeClickable(driver, "XPath", "//*[@id='tmsGrid']/div[4]/a[4]/span", 2);
 
 
             // Click on go to last page buttton
