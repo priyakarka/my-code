@@ -35,7 +35,10 @@ namespace my_code.Utilities
             }
         }
 
-
+        internal static void WaitToBeClickable(IWebDriver driver, string v1, string v2)
+        {
+            throw new NotImplementedException();
+        }
 
         public static void WaitToBeVisible(IWebDriver driver, string locator, string locatorvalue, int seconds)
         {

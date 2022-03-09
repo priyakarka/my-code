@@ -3,14 +3,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using my_code.Pages;
+using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 
 namespace my_code.Utilities
 {
     internal class CommonDriver
     {
-        public static IWebDriver driver;
+        public  IWebDriver driver;
 
+        [OneTimeSetUp]
+
+        public void LoginFunction()
+        {
+            // open chrome browser 
+            driver = new ChromeDriver();
+            driver.Manage().Window.Maximize();
+
+
+            // Login page object intialization and definition 
+            LoginPage loginpageObj = new LoginPage();
+            loginpageObj.LoginSteps(driver);
+
+           
+        }
+
+        [OneTimeTearDown]
+
+        public void CloseTestRun()
+        {
+            driver.Quit();
+
+        }
 
 
     }

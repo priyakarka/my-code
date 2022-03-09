@@ -25,5 +25,9 @@ namespace my_code.Pages
 
         }
 
-           }
+        public void GoToEmployeePage(IWebDriver driver)
+        {
+
+        }
+    }
 }

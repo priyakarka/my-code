@@ -9,73 +9,53 @@ using OpenQA.Selenium.Chrome;
 namespace my_code.pages
 {
     [TestFixture]
+    [Parallelizable]
     internal class TM_Tests: CommonDriver
     {
         
-    [SetUp]
-        public void LoginFunction()
+
+        [Test, Order(1), Description("Check if user able to create a material record with valid data")]
+        public void CreateTM_Test()
         {
-
-            // open chrome browser
-            IWebDriver driver = new ChromeDriver();
-            driver.Manage().Window.Maximize();
-
-            // Login page object initialzation and definition 
-            LoginPage loginPageObj = new LoginPage();
-            loginPageObj.LoginSteps(driver);
-
 
             // Home page object intialization and definition 
             HomePage homepageObj = new HomePage();
             homepageObj.GoToTMPage(driver);
 
-
-        }
-
-
-        [Test]
-        public void CreateTM_Test()
-        {
-          // TM page object intialzation and definition 
+            // TM page object intialzation and definition
             TMPage tMPageObj = new TMPage();
             tMPageObj.CreateTM(driver);
         }
 
-        [Test]
+        [Test, Order(2), Description("Check if user is able to edit a material record with valid data")]
         public void EditTM_Test()
         {
+            // Home page object intialzation and definition
+            HomePage homePageObj = new HomePage();
+            homePageObj.GoToTMPage(driver);
 
             // Edit TM
             TMPage tMPageObj = new TMPage();
             tMPageObj.EditTM(driver);
-
-
         }
 
-        [Test]
+        [Test, Order(3), Description("Check if user is able to delete an existing material record")]
         public void DeleteTM_Test()
         {
+            // Home page object intialzation and definition
+            HomePage homePageObj = new HomePage();
+            homePageObj.GoToTMPage(driver);
 
             // Delete TM
             TMPage tMPageObj = new TMPage();
             tMPageObj.DeleteTM(driver);
-
-
         }
-
-        [TearDown]
-        public void CloseTestRun()
-        {
-
-        }
-
     }
-
 }
-        
-            
-        
-    
+
+
+
+
 
 
 
