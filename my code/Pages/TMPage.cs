@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using my_code.Utilities;
+using NUnit.Framework;
 using OpenQA.Selenium;
 
 namespace my_code.Pages
@@ -44,26 +45,30 @@ namespace my_code.Pages
             // Click on save button
             IWebElement saveButton = driver.FindElement(By.Id("SaveButton"));
             saveButton.Click();
-            wait.WaitToBeClickable(driver, "XPath", "//*[@id='tmsGrid']/div[4]/a[4]/span", 2);
+            wait.WaitToBeVisible(driver, "XPath", "//*[@id='tmsGrid']/div[3]/table/tbody/tr[1]/td[1]", 2);
 
 
             // Click on go to last page buttton
             IWebElement goToLastPageButton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]/span"));
             goToLastPageButton.Click();
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
 
 
             // Check if record create is present in the table and has expected value
             IWebElement actualCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
 
-            if (actualCode.Text == "my code")
-            {
-                Console.WriteLine("Material record created successfully, test passed.");
-            }
-            else
-            {
-                Console.WriteLine("Test failed");
-            }
+           //  option1
+            Assert.That(actualCode.Text == "my code", "Actual code and expected code do not match");
+          
+             //   // option2 
+              //  if (actualCode.Text == "my code")
+           // {
+           //    Assert.Pass("Material record created successfully, test passed.");
+          //  }
+          //  else
+          //  {
+           //     Assert.Fail("Test failed.");
+           // }
 
 
         }

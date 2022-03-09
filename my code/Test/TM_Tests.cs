@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Threading;
 using my_code.Pages;
+using my_code.Utilities;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
 namespace my_code.pages
 {
-    internal class TM_Tests
+    [TestFixture]
+    internal class TM_Tests: CommonDriver
     {
-        private static object loginPageobj;
-
-        static void Main(string[] args)
+        
+    [SetUp]
+        public void LoginFunction()
         {
 
             // open chrome browser
@@ -26,21 +29,48 @@ namespace my_code.pages
             HomePage homepageObj = new HomePage();
             homepageObj.GoToTMPage(driver);
 
-            // TM page object intialization and definition 
+
+        }
+
+
+        [Test]
+        public void CreateTM_Test()
+        {
+          // TM page object intialzation and definition 
             TMPage tMPageObj = new TMPage();
             tMPageObj.CreateTM(driver);
+        }
+
+        [Test]
+        public void EditTM_Test()
+        {
 
             // Edit TM
+            TMPage tMPageObj = new TMPage();
             tMPageObj.EditTM(driver);
-
-            // Delete TM
-            tMPageObj.DeleteTM(driver);
-                                     
-
 
 
         }
+
+        [Test]
+        public void DeleteTM_Test()
+        {
+
+            // Delete TM
+            TMPage tMPageObj = new TMPage();
+            tMPageObj.DeleteTM(driver);
+
+
+        }
+
+        [TearDown]
+        public void CloseTestRun()
+        {
+
+        }
+
     }
+
 }
         
             
