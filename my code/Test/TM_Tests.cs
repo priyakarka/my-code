@@ -10,7 +10,7 @@ namespace my_code.pages
 {
     [TestFixture]
     [Parallelizable]
-    internal class TM_Tests: CommonDriver
+    internal class TM_Tests:CommonDriver
     {
         
 
