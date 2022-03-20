@@ -86,7 +86,7 @@ namespace my_code.Pages
 
 
 
-        public void EditTM(IWebDriver driver, string description)
+        public void EditTM(IWebDriver driver, string description, string code,string price)
         {
             // Wait untill the entire TM page is displayed
             wait.WaitToBeVisible(driver, "XPath", "//*[@id='tmsGrid']/div[3]/table/tbody/tr[1]/td[1]", 2);
@@ -113,7 +113,7 @@ namespace my_code.Pages
             // Edit code
             IWebElement codeTextbox = driver.FindElement(By.Id("Code"));
             codeTextbox.Clear();
-            codeTextbox.SendKeys("Editedmycode");
+            codeTextbox.SendKeys(code);
 
 
             // Edit description
@@ -128,7 +128,7 @@ namespace my_code.Pages
             priceTag.Click();
             priceTextbox.Clear();
             priceTag.Click();
-            priceTextbox.SendKeys("170");
+            priceTextbox.SendKeys(price);
 
             //   // Click on save button
             IWebElement saveButton = driver.FindElement(By.Id("SaveButton"));
@@ -139,17 +139,8 @@ namespace my_code.Pages
             IWebElement goToLastPageButton1 = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]/span"));
             goToLastPageButton1.Click();
             Thread.Sleep(1000);
+                       
 
-            // Assertion
-            IWebElement createdCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
-            IWebElement createdTypeCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[2]"));
-            IWebElement createdDescription = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[3]"));
-            IWebElement createdPrice = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[4]"));
-
-            Assert.That(createdCode.Text == "Editedmy code", "Code record hasn't been edited.");
-            Assert.That(createdTypeCode.Text == "M", "TypeCode record hasn't been edited.");
-            Assert.That(createdDescription.Text == "Editedmycode", "Description record hasn't been edited.");
-            Assert.That(createdPrice.Text == "$170.00", "Price record hasn't been edited.");
         }
 
         public string GetEditedDescription(IWebDriver driver)
@@ -159,6 +150,18 @@ namespace my_code.Pages
 
         }
 
+        public string GetEdtedCode(IWebDriver driver)
+        {
+            IWebElement createdCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+            return createdCode.Text;
+
+        }
+
+        public string GetEdtedPrice(IWebDriver driver)
+        {
+            IWebElement createdPrice = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[4]"));
+            return createdPrice.Text;
+        }
 
 
 

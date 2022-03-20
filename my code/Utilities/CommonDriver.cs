@@ -10,7 +10,7 @@ using OpenQA.Selenium.Chrome;
 
 namespace my_code.Utilities
 {
-    internal class CommonDriver
+    public class CommonDriver
     {
         public  IWebDriver driver;
 

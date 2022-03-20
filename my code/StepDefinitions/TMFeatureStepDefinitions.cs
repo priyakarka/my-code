@@ -10,10 +10,11 @@ namespace my_code.StepDefinitions
     [Binding]
     public class TMFeatureStepDefinitions : CommonDriver
     {
-                // Initializing page objects
+        // Initializing page objects
         LoginPage loginpageObj = new LoginPage();
         HomePage homepageObj = new HomePage();
         TMPage tMPageObj = new TMPage();
+
 
 
         [Given(@"I logged into TurnUp portal successfully")]
@@ -56,22 +57,28 @@ namespace my_code.StepDefinitions
 
 
         }
-       
-        [When(@"I update '([^']*)' on an existing time and material record")]
-        public void WhenIUpdateOnAnExistingTimeAndMaterialRecord(string p0)
+
+        [When(@"I update '([^']*)', '([^']*)', '([^']*)'on an existing time and material record")]
+        public void WhenIUpdateOnAnExistingTimeAndMaterialRecord(string p0, string p1, string p2)
         {
-            tMPageObj.EditTM(driver,p0);
-           
+            tMPageObj.EditTM(driver, p0, p1, p2);
         }
 
-        [Then(@"the record should have the updated '([^']*)'")]
-        public void ThenTheRecordShouldHaveTheUpdated(string p0)
+        [Then(@"the record should have the updated '([^']*)', '([^']*)', '([^']*)'")]
+        public void ThenTheRecordShouldHaveTheUpdated(string p0, string p1, string p2)
         {
             string editedDescription = tMPageObj.GetEditedDescription(driver);
+            string editedCode = tMPageObj.GetEdtedCode(driver);
+            string editedPrice = tMPageObj.GetEdtedPrice(driver);
 
-            Assert.That(editedDescription == p0, "Actual description and expected description do not match");
-
+            Assert.That(editedDescription == p0, "Actual description and expected description do not nmatch");
+            Assert.That(editedCode == p1, "Actual description and expected code do not nmatch");
+            Assert.That(editedPrice == p2, "Actual description and expected price do not nmatch");
         }
+
+
+
+
 
     }
 }
