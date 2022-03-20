@@ -36,7 +36,7 @@ namespace my_code.pages
 
             // Edit TM
             TMPage tMPageObj = new TMPage();
-            tMPageObj.EditTM(driver);
+            tMPageObj.EditTM(driver, "dummy");
         }
 
         [Test, Order(3), Description("Check if user is able to delete an existing material record")]

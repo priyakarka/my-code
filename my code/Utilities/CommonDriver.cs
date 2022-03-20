@@ -18,10 +18,9 @@ namespace my_code.Utilities
 
         public void LoginFunction()
         {
-            // open chrome browser 
+            
             driver = new ChromeDriver();
-            driver.Manage().Window.Maximize();
-
+            
 
             // Login page object intialization and definition 
             LoginPage loginpageObj = new LoginPage();
